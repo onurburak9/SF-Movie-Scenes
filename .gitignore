@@ -1,6 +1,6 @@
 bundle.js
 .DS_Store
-
+src/config/config.js
 # IntelliJ
 *.iml
 /.idea

@@ -1,13 +1,14 @@
 import React from "react";
 import { Provider, Subscribe, Container } from "unstated";
 import Geocode from "react-geocode";
+import { config } from "../config/config";
 
 // Create a Container for our React Context. This container will
 // hold state and methods just like a react component would:
 export class StateContainer extends Container {
 	constructor() {
 		super();
-		Geocode.setApiKey("AIzaSyBPWjQx5moAuMWzqY0TG4BOqqAvu0mR0iA");
+		Geocode.setApiKey(config.API_KEY);
 
 		// The state will be available to any component we inject
 		// the Container instance into
@@ -20,8 +21,6 @@ export class StateContainer extends Container {
 	// These methods will also be avaiable anywhere we inject our
 	// container context
 	fetchData = () => {
-		const LOCATION_DATA = "https://data.sfgov.org/resource/wwmu-gmzc.json";
-
 		function resultOptimizer(data) {
 			var marked = [];
 			return data.reduce(function(r, a) {
@@ -32,7 +31,7 @@ export class StateContainer extends Container {
 				return r;
 			}, []);
 		}
-		fetch(LOCATION_DATA)
+		fetch(config.LOCATION_DATA)
 			.then(r => r.json())
 			.then(data => resultOptimizer(data))
 			.then(movies => {
