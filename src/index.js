@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/app";
+import { ApiProvider } from "./components/state";
 
-import App from './components/app';
-import reducers from './reducers';
-
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+// import "./ReactotronConfig";
+require("../style/sample.less");
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+	<ApiProvider>
+		<App />
+	</ApiProvider>,
+	document.querySelector(".container-fluid")
+);
